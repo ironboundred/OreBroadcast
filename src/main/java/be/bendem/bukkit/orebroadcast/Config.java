@@ -1,9 +1,7 @@
 package be.bendem.bukkit.orebroadcast;
 
-import be.bendem.bukkit.orebroadcast.updater.OreBroadcastUpdater;
 import org.bukkit.Material;
 import org.bukkit.scheduler.BukkitTask;
-import org.mcstats.Metrics;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,8 +26,6 @@ import java.util.logging.Level;
     private final File           playerFile;
     private       boolean        worldWhitelistActive = false;
     private       boolean        metricsActive        = true;
-    private OreBroadcastUpdater updater;
-    private Metrics             metrics;
 
     /* package */ Config(OreBroadcast plugin) {
         this.plugin = plugin;

@@ -5,7 +5,6 @@ import be.bendem.bukkit.orebroadcast.commands.CommandHandler;
 import be.bendem.bukkit.orebroadcast.handlers.BlockBreakListener;
 import be.bendem.bukkit.orebroadcast.handlers.BlockPlaceListener;
 import be.bendem.bukkit.orebroadcast.handlers.PistonListener;
-import be.bendem.bukkit.orebroadcast.updater.OreBroadcastUpdater;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
