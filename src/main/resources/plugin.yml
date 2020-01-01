@@ -4,6 +4,7 @@ version: ${pom.version}
 author: bendem
 description: Send messages to other players when you find ores.
 website: ${pom.url}
+api-version: 1.13
 
 commands:
     ob:
@@ -18,21 +19,16 @@ permissions:
             ob.commands.*: true
             ob.broadcast: true
             ob.receive: true
-            ob.update.notification: true
     ob.commands.*:
         description: Give access to all the plugin commands
         children:
             ob.commands.reload: true
             ob.commands.clear: true
-            ob.commands.update: true
     ob.commands.reload:
         description: Players with this permission can reload the config
         default: op
     ob.commands.clear:
         description: Players with this permission can clear the blacklist
-        default: op
-    ob.commands.update:
-        description: Players with this permission can check and download updates
         default: op
     ob.commands.optout:
         description: Players with this permission can opt out from the plugin broadcasts
@@ -43,6 +39,3 @@ permissions:
     ob.receive:
         description: Players with this permission will receive OreBroadcast messages.
         default: true
-    ob.update.notification:
-        description: Will receive a notification on startup if an update is available
-        default: op
