@@ -38,7 +38,7 @@ public class PistonListener implements Listener {
         pistonUtil.retract(e.getBlock());
         // Workaround end
 
-        Block blockMoving = e.getRetractLocation().getBlock();
+        Block blockMoving = e.getBlock();
         if(!e.isSticky() || !plugin.isWhitelisted(blockMoving.getType()) || !plugin.isWorldWhitelisted(e.getBlock().getWorld())) {
             return;
         }
@@ -73,7 +73,7 @@ public class PistonListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onPistonBreak(BlockBreakEvent e) {
-        if(e.getBlock().getType() == Material.PISTON_BASE || e.getBlock().getType() == Material.PISTON_STICKY_BASE) {
+        if(e.getBlock().getType() == Material.PISTON || e.getBlock().getType() == Material.STICKY_PISTON) {
             pistonUtil.remove(e.getBlock());
         }
     }
