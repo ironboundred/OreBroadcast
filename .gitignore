@@ -11,3 +11,10 @@ build_log.txt
 *.ai
 *.iml
 .idea/
+/bin/
+/.idea
+/out
+*.iws
+.classpath
+.project
+.settings
