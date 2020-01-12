@@ -1,11 +1,10 @@
 package be.bendem.bukkit.orebroadcast.handlers;
 
-import be.bendem.bukkit.orebroadcast.OreBroadcast;
-import be.bendem.bukkit.orebroadcast.OreBroadcastEvent;
-import be.bendem.bukkit.orebroadcast.OreBroadcastException;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,8 +12,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import java.util.HashSet;
-import java.util.Set;
+import be.bendem.bukkit.orebroadcast.OreBroadcast;
+import be.bendem.bukkit.orebroadcast.OreBroadcastEvent;
+import be.bendem.bukkit.orebroadcast.OreBroadcastException;
 
 public class BlockBreakListener implements Listener {
 
@@ -80,12 +80,7 @@ public class BlockBreakListener implements Listener {
         plugin.blackList(e.getVein());
         plugin.unBlackList(e.getBlockMined());
 
-        String blockName;
-        if(e.getBlockMined().getType() == Material.GLOWING_REDSTONE_ORE) {
-            blockName = "redstone";
-        } else {
-            blockName = e.getBlockMined().getType().name().toLowerCase().replace("_ore", "");
-        }
+        String blockName = e.getBlockMined().getType().name().toLowerCase().replace("_ore", "");
 
         String color = plugin.getConfig().getString("colors." + blockName, "white").toUpperCase();
         String formattedMessage = format(
@@ -136,11 +131,8 @@ public class BlockBreakListener implements Listener {
         }
     }
 
-    // Workaround for redstone ores
     private boolean equals(Block block1, Block block2) {
-        return block1.getType().equals(block2.getType())
-            || block1.getType() == Material.GLOWING_REDSTONE_ORE && block2.getType() == Material.REDSTONE_ORE
-            || block1.getType() == Material.REDSTONE_ORE && block2.getType() == Material.GLOWING_REDSTONE_ORE;
+        return block1.getType().equals(block2.getType());
     }
 
     private void broadcast(Set<Player> recipients, String message) {

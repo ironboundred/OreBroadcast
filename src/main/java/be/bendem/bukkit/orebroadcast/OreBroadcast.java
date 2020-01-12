@@ -5,7 +5,6 @@ import be.bendem.bukkit.orebroadcast.commands.CommandHandler;
 import be.bendem.bukkit.orebroadcast.handlers.BlockBreakListener;
 import be.bendem.bukkit.orebroadcast.handlers.BlockPlaceListener;
 import be.bendem.bukkit.orebroadcast.handlers.PistonListener;
-import be.bendem.bukkit.orebroadcast.updater.OreBroadcastUpdater;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -54,34 +53,6 @@ public class OreBroadcast extends JavaPlugin {
             }
         });
 
-        commandHandler.register(new Command("update", "Checks/Updates OreBroadcast version - Usage: update <check|update>", "ob.commands.update") {
-            @Override
-            public void execute(CommandSender sender, List<String> args) {
-                if(args.size() < 1) {
-                    sender.sendMessage("Not enough arguments");
-                    return;
-                }
-                if(config.getUpdater().isUpdated()) {
-                    sender.sendMessage("An update has already been downloaded, restart the server to apply it");
-                    return;
-                }
-
-                if(args.get(0).equalsIgnoreCase("check")) {
-                    config.getUpdater().checkUpdate(sender, false);
-                    if(config.getUpdater().isUpdateAvailable()) {
-                        sender.sendMessage("Update available");
-                    } else {
-                        sender.sendMessage("No update available");
-                    }
-                    return;
-                }
-
-                if(args.get(0).equalsIgnoreCase("download")) {
-                    config.getUpdater().checkUpdate(sender, true);
-                }
-            }
-        });
-
         commandHandler.register(new Command("optout", "Toggles OreBroadcast messages for yourself", "ob.commands.optout") {
             @Override
             public void execute(CommandSender sender, List<String> args) {
@@ -101,17 +72,8 @@ public class OreBroadcast extends JavaPlugin {
         });
     }
 
-    @Override
-    public void onDisable() {
-        config.stopMetrics();
-    }
-
     /* package */ File getJar() {
         return getFile();
-    }
-
-    public OreBroadcastUpdater getUpdater() {
-        return config.getUpdater();
     }
 
     public boolean isOptOut(Player player) {
