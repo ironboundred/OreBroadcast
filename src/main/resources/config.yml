@@ -63,6 +63,10 @@ broadcast-creative-placed-blocks: true
 # Displays the time the block break handler take in the console.
 timing-debug: false
 
+#Support for bungeecord broadcasting msgs
+bungeecord: false
+bungeecordprefix: '&c[server] ' 
+
 # Colors and color codes available :
 # Use the colors for the ore list and the color codes for the message
 #   black : 0           |     dark_blue : 1

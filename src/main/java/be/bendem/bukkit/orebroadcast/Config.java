@@ -13,6 +13,8 @@ import java.util.UUID;
 
 import org.bukkit.Material;
 
+import net.md_5.bungee.api.ChatColor;
+
 /* package */ class Config {
 
     private final OreBroadcast plugin;
@@ -22,6 +24,8 @@ import org.bukkit.Material;
     private final Set<UUID>      optOutPlayers        = new HashSet<>();
     private final File           playerFile;
     private       boolean        worldWhitelistActive = false;
+    private       boolean        bungeecord           = false;
+    private		  String		 bungeecordprefix     = "&c[server] ";
 
     /* package */ Config(OreBroadcast plugin) {
         this.plugin = plugin;
@@ -46,6 +50,10 @@ import org.bukkit.Material;
         if(worldWhitelistActive) {
             worldWhitelist.addAll(plugin.getConfig().getStringList("active-worlds"));
         }
+        
+        bungeecord = plugin.getConfig().getBoolean("bungeecord", false);
+        
+        bungeecordprefix = plugin.getConfig().getString("bungeecordprefix");
 
         // Load opt out players
         if(!playerFile.exists()) {
@@ -102,5 +110,13 @@ import org.bukkit.Material;
 
     /* package */ boolean isWorldWhitelistActive() {
         return worldWhitelistActive;
+    }
+    
+    /* package */ boolean isBungeecord() {
+    	return bungeecord;
+    }
+    
+    /* package */ String getBungeeCordPrefix() {
+    	return ChatColor.translateAlternateColorCodes('&', bungeecordprefix);
     }
 }

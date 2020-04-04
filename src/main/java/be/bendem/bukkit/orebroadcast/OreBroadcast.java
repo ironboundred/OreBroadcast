@@ -26,11 +26,14 @@ import java.util.UUID;
 public class OreBroadcast extends JavaPlugin {
 
     private Config config;
+    private PluginMessage pluginMessage;
 
     @Override
     public void onEnable() {
         config = new Config(this);
         config.loadConfig();
+        
+        pluginMessage = new PluginMessage(this);
 
         getServer().getPluginManager().registerEvents(new BlockBreakListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), this);
@@ -78,6 +81,12 @@ public class OreBroadcast extends JavaPlugin {
 
     public boolean isOptOut(Player player) {
         return config.isOptOut(player.getUniqueId());
+    }
+    
+    public void sendPluginMessage(String message) {
+    	if(config.isBungeecord()) {
+    		pluginMessage.sendPluginMessage(config.getBungeeCordPrefix(), message);
+    	}
     }
 
     /**

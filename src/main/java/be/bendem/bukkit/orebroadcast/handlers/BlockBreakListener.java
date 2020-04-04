@@ -76,7 +76,7 @@ public class BlockBreakListener implements Listener {
         if(e.isCancelled() || e.getVein().isEmpty()) {
             return;
         }
-
+        
         plugin.blackList(e.getVein());
         plugin.unBlackList(e.getBlockMined());
 
@@ -92,6 +92,9 @@ public class BlockBreakListener implements Listener {
             e.getVein().size() > 1
         );
         broadcast(e.getRecipients(), formattedMessage);
+        
+       plugin.sendPluginMessage(formattedMessage);
+        
 
         if(plugin.getConfig().getBoolean("timing-debug", false)) {
             plugin.getLogger().info("Event duration : " + (System.currentTimeMillis() - timer) + "ms");
