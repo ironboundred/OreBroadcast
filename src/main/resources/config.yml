@@ -65,7 +65,7 @@ timing-debug: false
 
 #Support for bungeecord broadcasting msgs
 bungeecord: false
-bungeecordprefix: '&c[server] ' 
+bungeecordprefix: '&c[server]&r ' 
 
 # Colors and color codes available :
 # Use the colors for the ore list and the color codes for the message
