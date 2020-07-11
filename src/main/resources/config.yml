@@ -21,6 +21,7 @@ colors:
     quartz: white
     diamond: aqua
     emerald: green
+    ancient_debris: dark_red
 
 # The message to be broadcasted (you can use the tags {player_name}, {real_player_name},
 # {count}, {plural}, {ore}, {ore_color} and {world}).
@@ -44,6 +45,7 @@ ore-translations:
     quartz: quartz
     diamond: diamond
     emerald: emerald
+    ancient_debris: ancient_debris
 
 # Set this to true to only activate OreBroadcast in listed worlds.
 active-per-worlds: false
