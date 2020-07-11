@@ -15,8 +15,6 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
-import net.md_5.bungee.api.ChatColor;
-
 public class PluginMessage implements PluginMessageListener {
 	
     private final OreBroadcast plugin;

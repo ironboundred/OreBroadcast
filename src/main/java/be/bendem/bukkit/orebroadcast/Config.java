@@ -40,7 +40,7 @@ import net.md_5.bungee.api.ChatColor;
         blocksToBroadcast.clear();
 
         for(String item : configList) {
-            Material material = Material.getMaterial(item.toUpperCase() + "_ORE");
+            Material material = Material.getMaterial(item.toUpperCase());
             blocksToBroadcast.add(material);
         }
 

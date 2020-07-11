@@ -1,13 +1,14 @@
 # A list of the ores which will be broadcasted when found.
 ores:
-    - coal
-    - iron
-    - gold
-    - lapis
-    - redstone
-    - quartz
-    - diamond
-    - emerald
+    - coal_ore
+    - iron_ore
+    - gold_ore
+    - lapis_ore
+    - redstone_ore
+    - quartz_ore
+    - diamond_ore
+    - emerald_ore
+    - ancient_debris
 
 # The colors to use to color the ores in the broadcast message.
 # See the end of the file for a list of available colors.
