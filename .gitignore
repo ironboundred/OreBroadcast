@@ -18,3 +18,5 @@ build_log.txt
 .classpath
 .project
 .settings
+.vscode
+/vscode
