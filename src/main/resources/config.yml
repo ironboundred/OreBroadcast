@@ -2,13 +2,19 @@
 ores:
     - coal_ore
     - iron_ore
+    - deepslate_iron_ore
     - gold_ore
+    - deepslate_gold_ore
     - lapis_ore
     - redstone_ore
     - quartz_ore
     - diamond_ore
+    - deepslate_diamond_ore
     - emerald_ore
+    - deepslate_emerald_ore
     - ancient_debris
+    - copper_ore
+    - deepslate_copper_ore
 
 # The colors to use to color the ores in the broadcast message.
 # See the end of the file for a list of available colors.
@@ -17,11 +23,12 @@ colors:
     iron: gray
     gold: yellow
     lapis: dark_blue
-    redstone: red
+    redstone: dark_red
     quartz: white
     diamond: aqua
     emerald: green
     ancient_debris: dark_red
+    copper: red
 
 # The message to be broadcasted (you can use the tags {player_name}, {real_player_name},
 # {count}, {plural}, {ore}, {ore_color} and {world}).
@@ -46,6 +53,7 @@ ore-translations:
     diamond: diamond
     emerald: emerald
     ancient_debris: ancient_debris
+    copper: copper
 
 # Set this to true to only activate OreBroadcast in listed worlds.
 active-per-worlds: false
