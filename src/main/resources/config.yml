@@ -1,34 +1,59 @@
 # A list of the ores which will be broadcasted when found.
 ores:
-    - coal_ore
+    # Iron
     - iron_ore
     - deepslate_iron_ore
+    # Gold
     - gold_ore
     - deepslate_gold_ore
-    - lapis_ore
-    - redstone_ore
-    - quartz_ore
+    - nether_gold_ore
+    # Diamond
     - diamond_ore
     - deepslate_diamond_ore
+    # Emerald
     - emerald_ore
     - deepslate_emerald_ore
-    - ancient_debris
+    # Copper
     - copper_ore
     - deepslate_copper_ore
+    # Other
+    - lapis_ore
+    - deepslate_lapis_ore
+    - redstone_ore
+    - deepslate_redstone_ore
+    - quartz_ore
+    - ancient_debris
+    - coal_ore
+    - deepslate_coal_ore
 
 # The colors to use to color the ores in the broadcast message.
 # See the end of the file for a list of available colors.
 colors:
-    coal: dark_gray
-    iron: gray
-    gold: yellow
-    lapis: dark_blue
-    redstone: dark_red
-    quartz: white
-    diamond: aqua
-    emerald: green
+    # Other
     ancient_debris: dark_red
-    copper: red
+    quartz_ore: white
+    coal_ore: dark_gray
+    deepslate_coal_ore: dark_gray
+    lapis_ore: dark_blue
+    deepslate_lapis_ore: dark_blue
+    redstone_ore: dark_red
+    deepslate_redstone_ore: dark_red
+    # Iron
+    iron_ore: gray
+    deepslate_iron_ore: gray
+    # Gold
+    gold_ore: yellow
+    deepslate_gold_ore: yellow
+    nether_gold_ore: yellow
+    # Diamond
+    diamond_ore: aqua
+    deepslate_diamond_ore: aqua
+    # Emerald
+    emerald_ore: green
+    deepslate_emerald_ore: green
+    # Copper
+    copper_ore: red
+    deepslate_copper_ore: red
 
 # The message to be broadcasted (you can use the tags {player_name}, {real_player_name},
 # {count}, {plural}, {ore}, {ore_color} and {world}).
@@ -44,16 +69,31 @@ plural: s
 
 # The ore translations to use in the messages.
 ore-translations:
-    coal: coal
-    iron: iron
-    gold: gold
-    lapis: lapis
-    redstone: redstone
-    quartz: quartz
-    diamond: diamond
-    emerald: emerald
+    # Other
     ancient_debris: ancient_debris
-    copper: copper
+    coal_ore: coal
+    deepslate_coal_ore: coal
+    lapis_ore: lapis
+    deepslate_lapis_ore: lapis
+    redstone_ore: redstone
+    deepslate_redstone_ore: redstone
+    quartz_ore: quartz
+    # Iron
+    iron_ore: iron
+    deepslate_iron_ore: iron
+    # Gold
+    gold_ore: gold
+    deepslate_gold_ore: gold
+    nether_gold_ore: gold
+    # Diamond
+    diamond_ore: diamond
+    deepslate_diamond_ore: diamond
+    # Emerald
+    emerald_ore: emerald
+    deepslate_emerald_ore: emerald
+    # Copper
+    copper_ore: copper
+    deepslate_copper_ore: copper
 
 # Set this to true to only activate OreBroadcast in listed worlds.
 active-per-worlds: false

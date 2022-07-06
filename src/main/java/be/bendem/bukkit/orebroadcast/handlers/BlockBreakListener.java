@@ -80,8 +80,7 @@ public class BlockBreakListener implements Listener {
         plugin.blackList(e.getVein());
         plugin.unBlackList(e.getBlockMined());
 
-        String blockName = e.getBlockMined().getType().name().toLowerCase().replace("_ore", "");
-        blockName = blockName.replace("deepslate_", "");
+        String blockName = e.getBlockMined().getType().name().toLowerCase();
 
         String color = plugin.getConfig().getString("colors." + blockName, "white").toUpperCase();
         String formattedMessage = format(
