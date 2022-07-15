@@ -14,7 +14,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 import be.bendem.bukkit.orebroadcast.OreBroadcast;
 import be.bendem.bukkit.orebroadcast.OreBroadcastEvent;
-import be.bendem.bukkit.orebroadcast.OreBroadcastException;
 
 public class BlockBreakListener implements Listener {
 
@@ -104,17 +103,14 @@ public class BlockBreakListener implements Listener {
     private Set<Block> getVein(Block block) {
         Set<Block> vein = new HashSet<>();
         vein.add(block);
-        try {
-            getVein(block, vein);
-        } catch(OreBroadcastException e) {
-            return null;
-        }
+        getVein(block, vein);
+
         return vein;
     }
 
-    private void getVein(Block block, Set<Block> vein) throws OreBroadcastException {
+    private void getVein(Block block, Set<Block> vein) {
         if(vein.size() > plugin.getConfig().getInt("max-vein-size", 500)) {
-            throw new OreBroadcastException();
+            return;
         }
 
         int i, j, k;
@@ -126,6 +122,11 @@ public class BlockBreakListener implements Listener {
                             && equals(block, relative)           // block has not the same type
                             && ((i != 0 || j != 0 || k != 0))    // comparing block to itself
                             && !plugin.isBlackListed(relative)) {// don't consider blacklisted blocks
+
+                        if(vein.size() > plugin.getConfig().getInt("max-vein-size", 500)) {
+                            continue;
+                        }
+
                         vein.add(relative);
                         getVein(relative, vein);
                     }
