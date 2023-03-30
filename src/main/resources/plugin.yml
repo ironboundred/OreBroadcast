@@ -5,6 +5,7 @@ author: bendem
 description: Send messages to other players when you find ores.
 website: ${pom.url}
 api-version: 1.13
+folia-supported: true
 
 commands:
     ob:
