@@ -49,7 +49,8 @@ public class BlockBreakListener implements Listener {
         // Measuring event time
         long timer = System.currentTimeMillis();
 
-        Set<Block> vein = getVein(block);
+        int maxVeinSize = plugin.getConfig().getInt("max-vein-size", 500);
+        Set<Block> vein = getVein(block, maxVeinSize);
         if(vein == null || vein.size() < 1) {
             plugin.getLogger().fine("Vein ignored");
             return;
@@ -81,7 +82,14 @@ public class BlockBreakListener implements Listener {
 
         String blockName = e.getBlockMined().getType().name().toLowerCase();
 
-        String color = plugin.getConfig().getString("colors." + blockName, "white").toUpperCase();
+        String colorName = plugin.getConfig().getString("colors." + blockName, "white").toUpperCase();
+        ChatColor color;
+        try {
+            color = ChatColor.valueOf(colorName);
+        } catch(IllegalArgumentException ex) {
+            plugin.getLogger().warning("Invalid color '" + colorName + "' for " + blockName + ", defaulting to WHITE");
+            color = ChatColor.WHITE;
+        }
         String formattedMessage = format(
             e.getFormat(),
             e.getSource(),
@@ -100,16 +108,16 @@ public class BlockBreakListener implements Listener {
         }
     }
 
-    private Set<Block> getVein(Block block) {
+    private Set<Block> getVein(Block block, int maxVeinSize) {
         Set<Block> vein = new HashSet<>();
         vein.add(block);
-        getVein(block, vein);
+        getVein(block, vein, maxVeinSize);
 
         return vein;
     }
 
-    private void getVein(Block block, Set<Block> vein) {
-        if(vein.size() > plugin.getConfig().getInt("max-vein-size", 500)) {
+    private void getVein(Block block, Set<Block> vein, int maxVeinSize) {
+        if(vein.size() > maxVeinSize) {
             return;
         }
 
@@ -123,12 +131,12 @@ public class BlockBreakListener implements Listener {
                             && ((i != 0 || j != 0 || k != 0))    // comparing block to itself
                             && !plugin.isBlackListed(relative)) {// don't consider blacklisted blocks
 
-                        if(vein.size() > plugin.getConfig().getInt("max-vein-size", 500)) {
+                        if(vein.size() > maxVeinSize) {
                             continue;
                         }
 
                         vein.add(relative);
-                        getVein(relative, vein);
+                        getVein(relative, vein, maxVeinSize);
                     }
                 }
             }
@@ -145,20 +153,20 @@ public class BlockBreakListener implements Listener {
         }
     }
 
-    private String format(String msg, Player player, int count, String ore, String color, boolean plural) {
+    private String format(String msg, Player player, int count, String ore, ChatColor color, boolean plural) {
         return ChatColor.translateAlternateColorCodes('&', msg
             .replace("{player_name}", player.getDisplayName())
             .replace("{real_player_name}", player.getName())
             .replace("{world}", player.getWorld().getName())
             .replace("{count}", String.valueOf(count))
             .replace("{ore}", translateOre(ore, color))
-            .replace("{ore_color}", "&" + ChatColor.valueOf(color).getChar())
+            .replace("{ore_color}", "&" + color.getChar())
             .replace("{plural}", plural ? plugin.getConfig().getString("plural", "s") : "")
         );
     }
 
-    private String translateOre(String ore, String color) {
-        return "&" + ChatColor.valueOf(color).getChar()
+    private String translateOre(String ore, ChatColor color) {
+        return "&" + color.getChar()
             + plugin.getConfig().getString("ore-translations." + ore, ore);
     }
 

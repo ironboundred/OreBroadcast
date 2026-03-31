@@ -13,7 +13,7 @@ import java.util.UUID;
 
 import org.bukkit.Material;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 /* package */ class Config {
 
@@ -41,6 +41,10 @@ import net.md_5.bungee.api.ChatColor;
 
         for(String item : configList) {
             Material material = Material.getMaterial(item.toUpperCase());
+            if(material == null) {
+                plugin.getLogger().warning("Unknown material in config: " + item);
+                continue;
+            }
             blocksToBroadcast.add(material);
         }
 
